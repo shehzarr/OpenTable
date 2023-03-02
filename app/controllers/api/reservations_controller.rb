@@ -1,14 +1,14 @@
 class Api::ReservationsController < ApplicationController
-  
-  def index 
+  before_action :set_reservation, only: [:show, :update, :destroy]
+
+  def index
     @reservations = Reservation.where(user_id: current_user.id) 
     render :index
   end
 
-  def show 
-    @reservation = Reservation.find(params[:id]) 
+  def show
     render :show 
-  end 
+  end
 
   def create 
     @reservation = Reservation.new(reservation_params)
@@ -22,10 +22,6 @@ class Api::ReservationsController < ApplicationController
   end
 
   def update
-
-    @reservation = Reservation.find(params[:id])
-    @reservation.user_id = current_user.id
-
     if @reservation.user_id == current_user.id && @reservation.update(reservation_params) 
       render :show
     else
@@ -34,7 +30,6 @@ class Api::ReservationsController < ApplicationController
   end
 
   def delete 
-    @reservation = Review.find(params[:id])
     if @reservation.user_id == current_user.id
       @reservation.destroy
     else 
@@ -43,6 +38,10 @@ class Api::ReservationsController < ApplicationController
   end
 
   private
+  
+  def set_reservation
+    @reservation = Reservation.find(params[:id])
+  end
 
   def reservation_params
     params.require(:reservation).permit(:party_size, :status, :date, :time, :special_request, :restaurant_id)

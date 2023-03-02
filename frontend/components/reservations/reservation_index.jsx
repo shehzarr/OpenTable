@@ -73,7 +73,6 @@ class ReservationForm extends React.Component {
     this.setState({
       slots: [...this.availableTime]
     })
-    debugger
     document.querySelector(".available-time-slots").classList.add("is-open")
   }
 
@@ -90,7 +89,6 @@ class ReservationForm extends React.Component {
 
   render() {
     const partySize = Array(20).fill().map((_, i) => <option key={i + 1} id="select-option" value={`${i + 1}`}>{i + 1}</option>);
-    debugger
     const timeSlots = this.restaurantHours.map((time, i) => <option key={i} id="select-option" value={time}>{time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</option>)
     return (
       <div id="reservation-forms">

@@ -149,7 +149,7 @@ class RestaurantShow extends React.Component {
                 color="black"
                 className="bookmark-icon"
               />
-              <span>Save this retaurant</span>
+              <span>Save this restaurant</span>
             </button>
           </div>
           <div
@@ -295,12 +295,12 @@ class RestaurantShow extends React.Component {
                       {restaurant.description}
                     </div>
                     <Details restaurant={restaurant} />
-                    <div id="gallery-div">
+                    {/* <div id="gallery-div">
                       <h2 className="display-subheader" id="photos-section">
                         Photos
                       </h2>
-                      <PhotoGallery photos={restaurant.photoUrl}/>
-                    </div>
+                      <PhotoGallery photos={restaurant?.photoUrl}/>
+                    </div> */}
                     <div id="menu-div">
                       <h2 className="display-subheader" id="menu-section">
                         Menu
@@ -320,9 +320,9 @@ class RestaurantShow extends React.Component {
                   <div>
                     <ReservationForm restaurant={restaurant} loggedIn={loggedIn} />
                   </div>
-                    <div id="sidebar-map">
+                    {/* <div id="sidebar-map">
                       <RestaurantMap restaurant={restaurant}/>
-                    </div>
+                    </div> */}
                   <div className="restaurant-right-details">
                     <section>
                       <FontAwesomeIcon

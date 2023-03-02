@@ -82,9 +82,9 @@ class Details extends React.Component {
 
         </div>
         <div className="right-details">
-          <div id="sidebar-map" className="details-map">
+          {/* <div id="sidebar-map" className="details-map">
             <RestaurantMap restaurant={restaurant} />
-          </div>
+          </div> */}
             <section>
               <FontAwesomeIcon
                 icon={["far", "building"]}

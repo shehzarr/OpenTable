@@ -1,4 +1,6 @@
 class Api::ReviewsController < ApplicationController
+  before_action :set_review, only: [update, destroy]
+
   def index
     @reviews = Review.where(restaurant_id: params[:restaurant_id]).includes(:user => [:reviews] )
     render :index
@@ -18,8 +20,6 @@ class Api::ReviewsController < ApplicationController
   end
 
   def update 
-    @review = Review.find(params[:id])
-   
     if @review.user_id == current_user.id && @review.update(review_params)
       @review.restaurant.average_ratings
       render :show
@@ -29,7 +29,6 @@ class Api::ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Review.find(params[:id])
     if @review.user_id == current_user.id
       @review.destroy
     else 
@@ -37,9 +36,11 @@ class Api::ReviewsController < ApplicationController
     end
   end
 
-
-
   private
+
+  def set_review
+    @review = Review.find(params[:id])
+  end
 
   def review_params
     params.require(:review).permit(:overall, :food, :service, :ambience, :body)
